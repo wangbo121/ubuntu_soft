@@ -65,10 +65,10 @@ sudo apt-get install python-argparse git-core wget zip python-empy qtcreator cma
 echo -e "Start install simulation tools\n\n"
 sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev openjdk-8-jdk openjdk-8-jre clang-3.5 lldb-3.5 -y
 #删除掉Ubuntu自带的串口管理模块
-sudo apt-get remove modemmanager
+sudo apt-get remove modemmanager -y
 #安装交叉编译工具，安装完后执行gcc-arm-none-eabi -v测试版本
-sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi
-sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa
+sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi -y
+sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa -y
 sudo apt-get update
 echo -e "Start install gcc-arm-none-eabi\n\n"
 sudo apt-get install python-serial openocd \
