@@ -39,6 +39,33 @@ sudo apt-get -y install firfox
 sudo apt-get -y install build-essential emacs gcc 
 sudo apt-get -y install g++
 
+
+#-------------------------------------------
+#---------     编译PX4相关软件     ---------------------
+#-------------------------------------------
+#安装git
+#sudo apt-get -y install git git-core
+
+#添加wangbo这个用户到dialout组
+sudo usermod -a -G dialout wangbo
+#安装Ninja编译系统，速度比make更快
+#Install the Ninja Build System for faster build times than with Make. It will be automatically selected if installed.
+sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
+sudo apt-get update
+sudo apt-get install python-argparse git-core wget zip python-empy qtcreator cmake build-essential genromfs -y
+# simulation tools
+sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev openjdk-8-jdk openjdk-8-jre clang-3.5 lldb-3.5 -y
+#删除掉Ubuntu自带的串口管理模块
+sudo apt-get remove modemmanager
+#安装交叉编译工具，安装完后执行gcc-arm-none-eabi -v测试版本
+sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi
+sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa
+sudo apt-get update
+sudo apt-get install python-serial openocd \
+    flex bison libncurses5-dev autoconf texinfo build-essential \
+    libftdi-dev libtool zlib1g-dev \
+    python-empy gcc-arm-embedded -y
+
 #安装samba服务器
 #sudo apt-get install openssh-server
 
@@ -68,8 +95,6 @@ sudo apt-get -y install g++
 #命令执行完毕就可以在同一目录下生成一个deb软件包，名称为***.deb，然后双击之即可安装
 #将deb包转换为rpm包：   sudo alien -r    ***(包文件名） deb)
 
-#安装git
-#sudo apt-get -y install git git-core
 #安装svn  
 #sudo apt-get -y install subversion
 
