@@ -1,0 +1,2 @@
+# ubuntu_soft
+安装Ubuntu14x64后自动安装一些常用软件
