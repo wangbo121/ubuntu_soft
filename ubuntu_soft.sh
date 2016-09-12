@@ -12,6 +12,7 @@ echo -e "Install Program Start\n\n"
 sudo apt-get update
 #sudo apt-get dist-upgrade
 #sudo apt-get upgrade -y
+
 echo -e "Begining install SoftWare which is always needed!\n\n"
 #-------------------------------------------
 #---------     删除一些没用的软件       ------------
@@ -24,21 +25,27 @@ echo -e "Begining install SoftWare which is always needed!\n\n"
 #---------     常用软件     ---------------------
 #-------------------------------------------
 #安装vim代替vi
+echo -e "Start install vim\n\n"
 sudo apt-get install -y vim
 #echo "alias vi=vim " >> ~/.bashrc
 #source ~/.bashrc
 
-#开始安装右键打开终端
-sudo apt-get -y install nautilus-open-terminal
-
 #重新安装firfox
 #sudo apt-get remove firfox
-sudo apt-get -y install firfox
+#sudo apt-get -y install firfox
 
 #安装编译工具 gcc g++ make等等
-sudo apt-get -y install build-essential emacs gcc 
-sudo apt-get -y install g++
+echo -e "Start install gcc g++\n\n"
+sudo apt-get -y install gcc g++
+sudo apt-get -y install build-essential emacs 
 
+#安装ssh服务器
+echo -e "Start install ssh\n\n"
+#sudo apt-get install openssh-server
+
+#安装samba服务器
+echo -e "Start install samba\n\n"
+#sudo apt-get install samba
 
 #-------------------------------------------
 #---------     编译PX4相关软件     ---------------------
@@ -49,11 +56,13 @@ sudo apt-get -y install g++
 #添加wangbo这个用户到dialout组
 sudo usermod -a -G dialout wangbo
 #安装Ninja编译系统，速度比make更快
+echo -e "Start install Ninja\n\n"
 #Install the Ninja Build System for faster build times than with Make. It will be automatically selected if installed.
 sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
 sudo apt-get update
 sudo apt-get install python-argparse git-core wget zip python-empy qtcreator cmake build-essential genromfs -y
 # simulation tools
+echo -e "Start install simulation tools\n\n"
 sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev openjdk-8-jdk openjdk-8-jre clang-3.5 lldb-3.5 -y
 #删除掉Ubuntu自带的串口管理模块
 sudo apt-get remove modemmanager
@@ -61,20 +70,23 @@ sudo apt-get remove modemmanager
 sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi
 sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa
 sudo apt-get update
+echo -e "Start install gcc-arm-none-eabi\n\n"
 sudo apt-get install python-serial openocd \
     flex bison libncurses5-dev autoconf texinfo build-essential \
     libftdi-dev libtool zlib1g-dev \
     python-empy gcc-arm-embedded -y
 
-#安装samba服务器
-#sudo apt-get install openssh-server
-
-#安装ssh服务器
-#sudo apt-get install samba
+#安装搜狗输入法
+#卸载IBUS输入法
+sudo apt-get purge ibus ibus-gtk ibus-gtk3 ibus-pinyin* ibus-sunpinyin ibus-table python-ibus -y
+#安装fcitx输入法
+echo -e "Start install fcitx\n\n"
+sudo add-apt-repository ppa:fcitx-team/nightly -y
+sudo apt-get update 
+sudo apt-get install fcitx-sogoupinyin -y
 
 #小巧实用的截图工具,其实ubuntu12.04之后系统已经自带
 #sudo apt-get install gnome-screenshot
-
 
 #-------------------------------------------
 #---------     可选择软件     ---------------------
