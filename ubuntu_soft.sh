@@ -63,7 +63,13 @@ sudo apt-get update
 sudo apt-get install python-argparse git-core wget zip python-empy qtcreator cmake build-essential genromfs -y
 # simulation tools
 echo -e "Start install simulation tools\n\n"
-sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev openjdk-8-jdk openjdk-8-jre clang-3.5 lldb-3.5 -y
+#sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev openjdk-8-jdk openjdk-8-jre clang-3.5 lldb-3.5 -y
+#官网的安装命令中openjdk-8-jdk openjdk-8-jre在Ubuntu14.10可以直接安装，但是在14.04不能直接安装，我的版本是14.04.5x64
+sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev clang-3.5 lldb-3.5 -y
+#安装jdk
+sudo add-apt-repository ppa:openjdk-r/ppa
+sudo apt-get update 
+sudo apt-get install openjdk-8-jdk openjdk-8-jre -y
 #删除掉Ubuntu自带的串口管理模块
 sudo apt-get remove modemmanager -y
 #安装交叉编译工具，安装完后执行gcc-arm-none-eabi -v测试版本
@@ -77,8 +83,10 @@ sudo apt-get install python-serial openocd \
     python-empy gcc-arm-embedded -y
     
 #配置git，然后下载px4的Firmware，编译
-git config --global user.name "xxx"                       # 配置用户名  
-git config --global user.email "xxx@xxx.com"              # 配置邮件  
+#配置用户名  
+git config --global user.name "wangbo121"
+# 配置邮件  
+git config --global user.email "wangbo121bit@gmail.com"
 
 mkdir -p ~/src
 cd ~/src
