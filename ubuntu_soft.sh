@@ -8,6 +8,9 @@
 #-------------------------------------------
 
 echo -e "Install Program Start\n\n"
+sudo cp /etc/apt/sources.list /etc/apt/sourcesbackup.list
+sudo cp sources.list /etc/apt/sources.list
+
 #设置更新源，更新系统。
 sudo apt-get update
 #sudo apt-get dist-upgrade
@@ -97,6 +100,9 @@ git clone https://github.com/PX4/Firmware.git
 cd Firmware
 git submodule update --init --recursive
 cd ..
+
+#安装ibus拼音
+sudo apt-get install ibus-libpinyin -y
 
 #安装搜狗输入法
 #卸载IBUS输入法
