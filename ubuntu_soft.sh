@@ -60,7 +60,8 @@ echo -e "Start install Ninja\n\n"
 #Install the Ninja Build System for faster build times than with Make. It will be automatically selected if installed.
 sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
 sudo apt-get update
-sudo apt-get install python-argparse git-core wget zip python-empy qtcreator cmake build-essential genromfs -y
+#sudo apt-get install python-argparse git-core wget zip python-empy qtcreator cmake build-essential genromfs -y
+sudo apt-get -c apt.conf install python-argparse git-core wget zip python-empy qtcreator cmake build-essential genromfs -y
 # simulation tools
 echo -e "Start install simulation tools\n\n"
 #sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev openjdk-8-jdk openjdk-8-jre clang-3.5 lldb-3.5 -y
@@ -69,7 +70,9 @@ sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev clang-3.5
 #安装jdk
 sudo add-apt-repository ppa:openjdk-r/ppa
 sudo apt-get update 
-sudo apt-get install openjdk-8-jdk openjdk-8-jre -y
+#sudo apt-get install openjdk-8-jdk openjdk-8-jre -y
+sudo apt-get -c apt.conf install openjdk-8-jdk openjdk-8-jre -y
+
 #删除掉Ubuntu自带的串口管理模块
 sudo apt-get remove modemmanager -y
 #安装交叉编译工具，安装完后执行gcc-arm-none-eabi -v测试版本
