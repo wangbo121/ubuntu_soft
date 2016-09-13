@@ -75,15 +75,27 @@ sudo apt-get install python-serial openocd \
     flex bison libncurses5-dev autoconf texinfo build-essential \
     libftdi-dev libtool zlib1g-dev \
     python-empy gcc-arm-embedded -y
+    
+#配置git，然后下载px4的Firmware，编译
+git config --global user.name "xxx"                       # 配置用户名  
+git config --global user.email "xxx@xxx.com"              # 配置邮件  
+
+mkdir -p ~/src
+cd ~/src
+git clone https://github.com/PX4/Firmware.git
+cd Firmware
+git submodule update --init --recursive
+cd ..
 
 #安装搜狗输入法
 #卸载IBUS输入法
-sudo apt-get purge ibus ibus-gtk ibus-gtk3 ibus-pinyin* ibus-sunpinyin ibus-table python-ibus -y
+#sudo apt-get purge ibus ibus-gtk ibus-gtk3 ibus-pinyin* ibus-sunpinyin ibus-table python-ibus -y
 #安装fcitx输入法
-echo -e "Start install fcitx\n\n"
-sudo add-apt-repository ppa:fcitx-team/nightly -y
-sudo apt-get update 
-sudo apt-get install fcitx-sogoupinyin -y
+#echo -e "Start install fcitx\n\n"
+#sudo add-apt-repository ppa:fcitx-team/nightly -y
+#sudo apt-get update 
+#sudo apt-get install fcitx-sogoupinyin -y
+
 
 #小巧实用的截图工具,其实ubuntu12.04之后系统已经自带
 #sudo apt-get install gnome-screenshot
