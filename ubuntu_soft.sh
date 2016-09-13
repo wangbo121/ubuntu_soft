@@ -40,7 +40,8 @@ sudo apt-get install -y vim
 #安装编译工具 gcc g++ make等等
 echo -e "Start install gcc g++\n\n"
 sudo apt-get -y install gcc g++
-sudo apt-get -y install build-essential emacs 
+sudo apt-get -y install build-essential 
+#sudo apt-get -y emacs 
 
 #安装ssh服务器
 echo -e "Start install ssh\n\n"
@@ -54,7 +55,7 @@ echo -e "Start install samba\n\n"
 #---------     编译PX4相关软件     ---------------------
 #-------------------------------------------
 #安装git
-#sudo apt-get -y install git git-core
+sudo apt-get -y install git git-core
 
 #添加wangbo这个用户到dialout组
 sudo usermod -a -G dialout wangbo
