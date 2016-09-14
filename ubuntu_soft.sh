@@ -10,6 +10,7 @@
 echo -e "Install Program Start\n\n"
 sudo cp /etc/apt/sources.list /etc/apt/sourcesbackup.list
 sudo cp sources.list /etc/apt/sources.list
+sudo cp apt.conf /etc/apt/apt.conf
 
 #设置更新源，更新系统。
 sudo apt-get update
