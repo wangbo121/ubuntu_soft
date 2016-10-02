@@ -73,7 +73,7 @@ echo -e "Start install simulation tools\n\n"
 #官网的安装命令中openjdk-8-jdk openjdk-8-jre在Ubuntu14.10可以直接安装，但是在14.04不能直接安装，我的版本是14.04.5x64
 sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev clang-3.5 lldb-3.5 -y
 #安装jdk
-sudo add-apt-repository ppa:openjdk-r/ppa
+sudo add-apt-repository ppa:openjdk-r/ppa -y
 sudo apt-get update 
 #sudo apt-get install openjdk-8-jdk openjdk-8-jre -y
 sudo apt-get -c apt.conf install openjdk-8-jdk openjdk-8-jre -y
