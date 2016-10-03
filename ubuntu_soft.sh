@@ -30,7 +30,7 @@ echo -e "Begining install SoftWare which is always needed!\n\n"
 #-------------------------------------------
 #安装vim代替vi
 echo -e "Start install vim\n\n"
-sudo apt-get install -y vim
+sudo apt-get install vim -y
 #echo "alias vi=vim " >> ~/.bashrc
 #source ~/.bashrc
 
@@ -40,8 +40,8 @@ sudo apt-get install -y vim
 
 #安装编译工具 gcc g++ make等等
 echo -e "Start install gcc g++\n\n"
-sudo apt-get -y install gcc g++
-sudo apt-get -y install build-essential 
+sudo apt-get install gcc g++ -y
+sudo apt-get install build-essential -y
 #sudo apt-get -y emacs 
 
 #安装ssh服务器
@@ -56,7 +56,7 @@ echo -e "Start install samba\n\n"
 #---------     编译PX4相关软件     ---------------------
 #-------------------------------------------
 #安装git
-sudo apt-get -y install git git-core
+sudo apt-get install git git-core  -y
 
 #添加wangbo这个用户到dialout组
 sudo usermod -a -G dialout wangbo
@@ -65,8 +65,9 @@ echo -e "Start install Ninja\n\n"
 #Install the Ninja Build System for faster build times than with Make. It will be automatically selected if installed.
 sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
 sudo apt-get update
-#sudo apt-get install python-argparse git-core wget zip python-empy qtcreator cmake build-essential genromfs -y
-sudo apt-get -c apt.conf install python-argparse git-core wget zip python-empy qtcreator cmake build-essential genromfs -y
+#还是不要这个-c apt.conf了吧，也不需要那么快的速度
+sudo apt-get install python-argparse git-core wget zip python-empy qtcreator cmake build-essential genromfs -y
+#sudo apt-get -c apt.conf install python-argparse git-core wget zip python-empy qtcreator cmake build-essential genromfs -y
 # simulation tools
 echo -e "Start install simulation tools\n\n"
 #sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev openjdk-8-jdk openjdk-8-jre clang-3.5 lldb-3.5 -y
@@ -96,6 +97,11 @@ git config --global user.name "wangbo121"
 # 配置邮件  
 git config --global user.email "wangbo121bit@gmail.com"
 
+#在这个git clone之前加速github的下载
+#sudo vim /etc/ssh/ssh_config   
+#将GSSAPIAuthentication yes  
+#改为  
+#GSSAPIAuthentication no 
 mkdir -p ~/src
 cd ~/src
 git clone https://github.com/PX4/Firmware.git
