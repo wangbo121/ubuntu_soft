@@ -76,8 +76,8 @@ sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev clang-3.5
 #安装jdk
 sudo add-apt-repository ppa:openjdk-r/ppa -y
 sudo apt-get update 
-#sudo apt-get install openjdk-8-jdk openjdk-8-jre -y
-sudo apt-get -c apt.conf install openjdk-8-jdk openjdk-8-jre -y
+sudo apt-get install openjdk-8-jdk openjdk-8-jre -y
+#sudo apt-get -c apt.conf install openjdk-8-jdk openjdk-8-jre -y
 
 #删除掉Ubuntu自带的串口管理模块
 sudo apt-get remove modemmanager -y
