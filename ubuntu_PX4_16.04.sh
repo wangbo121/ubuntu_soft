@@ -21,7 +21,9 @@ SOURCE_ADDRESS=http://mirror.bit.edu.cn
 UBUNTU_VERSION=xenial
 SOURCES_LIST=/etc/apt/sources.list
 
+#备份旧的镜像源
 sudo cp /etc/apt/sources.list /etc/apt/sources.list_backup_$(date +%s)
+
 sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION main restricted universe multiverse" >> $SOURCES_LIST
 sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-security main restricted universe multiverse" >> $SOURCES_LIST
 sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-updates restricted universe multiverse" >> $SOURCES_LIST
@@ -42,7 +44,7 @@ sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-updates restricted univer
 sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-proposed restricted universe multiverse" >> $SOURCES_LIST
 sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-backports restricted universe multiverse" >> $SOURCES_LIST
 
-#更新源
+#更新镜像源
 sudo apt-get update
 
 #安装vim代替vi
@@ -73,20 +75,20 @@ sudo apt-get install git git-core  -y
 #添加wangbo这个用户到dialout组
 sudo usermod -a -G dialout $USER_NAME
 
-#安装Ninja编译系统，速度比make更快
+#安装Ninja编译系统，编译速度比make更快，如果安装了Ninja，编译时会自动选择这个工具
 echo -e "Start install Ninja\n\n"
-#Install the Ninja Build System for faster build times than with Make. It will be automatically selected if installed.
 sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
 sudo apt-get update
 sudo apt-get install python-argparse git-core wget zip python-empy qtcreator cmake build-essential genromfs -y
-#20170316出现这个问题couldn't find python module jinja2:
+#20170316在ubuntu16.04安装Ninja后，出现这个问题couldn't find python module jinja2，解决如下：安装python-jinja2
 sudo apt-get install python-jinja2
+
 #安装仿真工具simulation tools
 echo -e "Start install simulation tools\n\n"
 #sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev openjdk-8-jdk openjdk-8-jre clang-3.5 lldb-3.5 -y
 sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev clang-3.5 lldb-3.5 -y
 #官网的安装命令中openjdk-8-jdk openjdk-8-jre在Ubuntu14.10可以直接安装，但是在14.04不能直接安装，我的版本是14.04.5x64
-#安装jdk 如果可以直接通过apt-get安装
+#安装jdk，ubuntu16.04可以直接apt安装
 echo -e "Start install openjdk-8-jdk jre\n\n"
 sudo apt-get install openjdk-8-jdk openjdk-8-jre -y
 #安装jdk 如果不可以直接通过apt-get安装
@@ -96,6 +98,7 @@ sudo apt-get install openjdk-8-jdk openjdk-8-jre -y
 
 #删除掉Ubuntu自带的串口管理模块
 sudo apt-get remove modemmanager -y
+
 #删除ubuntu16.04本身自带的arm-none-eabi-gcc
 #ubuntu16.04的arm-none-eabi-gcc 版本是6.2的，不支持PX4编译，需要先删除
 sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi -y
@@ -132,14 +135,26 @@ git config --global user.email "$GIT_EMAIL"
 sudo cp /etc/ssh/ssh_config /etc/ssh/ssh_config_backup_$(date +%s)
 sudo sed 's/GSSAPIAuthentication yes/GSSAPIAuthentication no/' -i /etc/ssh/ssh_config
 
-su -$USER_NAME
+sudo su -$USER_NAME
 mkdir -p ~/src
 cd ~/src
 git clone https://github.com/PX4/Firmware.git
 cd Firmware
 git submodule update --init --recursive
 cd ../..
-sudo chmod 777 -R src
+#sudo chmod 777 -R src
+sudo chmod a+w -R src
+sudo chmod a+x -R src
+
+#安装qtcreator
+echo -e "Start install qtcreator\n\n"
+sudo apt-get install qtcreator
+#配置qtcreator
+cd ~/src/Firmware
+mkdir ../Firmware-build
+cd ../Firmware-build
+cmake ../Firmware -G "CodeBlocks - Unix Makefiles"
+#接下来就是把qtcreator快捷方式放到桌面，导入工程，见http://www.nephen.com/2015/12/env-build-of-px4
 
 echo -e "All SoftWare have been Installed!!!\n\n"
 echo "******************************************"
