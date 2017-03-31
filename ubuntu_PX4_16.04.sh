@@ -4,12 +4,17 @@
 # CTime  : 2016.09.02 
 
 #----------------------------------------
-#-- 执行安装脚本程序命令为: 
-#-- sudo chmod a+x ubuntu_1604_px4.sh
+#-- 执行安装脚本程序命令为: -- 
+#-- sudo chmod a+x ubuntu_1604_px4.sh --
 #-- sh ubuntu_1604_px4.sh 或者 ./ubuntu_1604_px4.sh --
 #----------------------------------------
 
-
+#----------------------------------------
+#-- 如果出现无法获得锁 /var/lib/apt/lists/lock --
+#----------------------------------------
+#sudo rm /var/cache/apt/archives/lock   
+#sudo rm /var/lib/dpkg/lock
+#sudo rm /var/lib/apt/lists/lock
 
 #设置github用户名，需要修改
 GIT_NAME=wangbo121
@@ -132,7 +137,7 @@ sudo apt-get install python-serial openocd \
     libftdi-dev libtool zlib1g-dev \
     python-empy -y
 cd ~
-wget https://launchpad.net/gcc-arm-embedded/5.0/5-2016-q2-update/+download/gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
+#wget https://launchpad.net/gcc-arm-embedded/5.0/5-2016-q2-update/+download/gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
 tar -jxf gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
 exportline="export PATH=$HOME/gcc-arm-none-eabi-5_4-2016q2/bin:$PATH"
 if grep -Fxq "$exportline" ~/.profile; then echo nothing to do ; else echo $exportline >> ~/.profile; fi
