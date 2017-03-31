@@ -1,17 +1,19 @@
 #!/bin/bash
-# Info   : install tools for px 4 on ubuntu 16.04
+# Info   : install tools for px4 on ubuntu 16.04
 # Author : wangbo                            
 # CTime  : 2016.09.02 
 
 #----------------------------------------
-#-- 执行安装脚本程序命令为: sh ubuntu_1604_px4.sh 或者 ./ubuntu_1604_px4.sh --
+#-- 执行安装脚本程序命令为: 
+#-- sudo chmod a+x ubuntu_1604_px4.sh
+#-- sh ubuntu_1604_px4.sh 或者 ./ubuntu_1604_px4.sh --
 #----------------------------------------
+
+
 
 #设置github用户名，需要修改
 GIT_NAME=wangbo121
 GIT_EMAIL=wangbo121bit@gmail.com
-
-sudo chmod a+x ubuntu_1604_px4.sh
 
 echo "----------------------------------------"
 echo "-- start ubuntu_1604_px4.sh --"
@@ -75,7 +77,7 @@ echo "----------------------------------------"
 sudo apt-get install samba -y
 
 #-------------------------------------------
-#-- 编译PX4相关软件 --
+#-- 编译px4相关软件 --
 #-------------------------------------------
 
 #添加用户到dialout组
@@ -114,7 +116,7 @@ echo "----------------------------------------"
 sudo apt-get remove modemmanager -y
 
 #删除ubuntu16.04本身自带的arm-none-eabi-gcc
-#ubuntu16.04的arm-none-eabi-gcc 版本是6.2的，不支持PX4编译，需要先删除
+#ubuntu16.04的arm-none-eabi-gcc 版本是6.2的，不支持px4编译，需要先删除
 echo "----------------------------------------"
 echo "-- remove gcc-arm-none-eabi --"
 echo "----------------------------------------"
@@ -137,7 +139,8 @@ if grep -Fxq "$exportline" ~/.profile; then echo nothing to do ; else echo $expo
 . ~/.profile
 #ubuntu 16.04 安装arm-none-eabi-gcc 交叉编译工具后
 #执行arm-none-eabi-gcc --version时出现 gcc-arm-none-eabi-gcc: 没有那个文件或目录
-sudo apt-get install lsb-core
+
+sudo apt-get install lsb-core -y
 arm-none-eabi-gcc --version
 
 echo "----------------------------------------"
