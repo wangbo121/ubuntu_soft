@@ -12,9 +12,9 @@
 #----------------------------------------
 #-- 如果出现无法获得锁 /var/lib/apt/lists/lock --
 #----------------------------------------
-#sudo rm /var/cache/apt/archives/lock   
-#sudo rm /var/lib/dpkg/lock
-#sudo rm /var/lib/apt/lists/lock
+sudo rm /var/cache/apt/archives/lock   
+sudo rm /var/lib/dpkg/lock
+sudo rm /var/lib/apt/lists/lock
 
 #设置github用户名，需要修改
 GIT_NAME=wangbo121
@@ -133,18 +133,20 @@ echo "----------------------------------------"
 echo "-- install gcc-arm-none-eabi-5.4 --"
 echo "----------------------------------------"
 sudo apt-get install python-serial openocd \
-    flex bison libncurses5-dev autoconf texinfo build-essential \
-    libftdi-dev libtool zlib1g-dev \
-    python-empy -y
+     flex bison libncurses5-dev autoconf texinfo build-essential \
+     libftdi-dev libtool zlib1g-dev \
+     python-empy -y
 cd ~
-#wget https://launchpad.net/gcc-arm-embedded/5.0/5-2016-q2-update/+download/gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
+wget https://launchpad.net/gcc-arm-embedded/5.0/5-2016-q2-update/+download/gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
 tar -jxf gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
 exportline="export PATH=$HOME/gcc-arm-none-eabi-5_4-2016q2/bin:$PATH"
 if grep -Fxq "$exportline" ~/.profile; then echo nothing to do ; else echo $exportline >> ~/.profile; fi
 . ~/.profile
 #ubuntu 16.04 安装arm-none-eabi-gcc 交叉编译工具后
 #执行arm-none-eabi-gcc --version时出现 gcc-arm-none-eabi-gcc: 没有那个文件或目录
-
+echo "----------------------------------------"
+echo "-- install lsb-core --"
+echo "----------------------------------------"
 sudo apt-get install lsb-core -y
 arm-none-eabi-gcc --version
 
@@ -159,7 +161,7 @@ git config --global user.email "$GIT_EMAIL"
 sudo cp /etc/ssh/ssh_config /etc/ssh/ssh_config_backup_$(date +%s)
 sudo sed 's/GSSAPIAuthentication yes/GSSAPIAuthentication no/' -i /etc/ssh/ssh_config
 
-sudo su $USER_NAME
+#sudo su $USER_NAME
 mkdir -p ~/src
 cd ~/src
 git clone https://github.com/PX4/Firmware.git
@@ -174,7 +176,10 @@ echo "----------------------------------------"
 echo "-- install qtcreator --"
 echo "----------------------------------------"
 #安装qtcreator
-sudo apt-get install qtcreator
+sudo apt-get install qtcreator -y
+echo "----------------------------------------"
+echo "-- config qtcreator --"
+echo "----------------------------------------"
 #配置qtcreator
 cd ~/src/Firmware
 mkdir ../Firmware-build
@@ -184,7 +189,7 @@ cmake ../Firmware -G "CodeBlocks - Unix Makefiles"
 
 echo "----------------------------------------"
 echo "-- all softWares have been installed --"
-echo "------------ enjoy it -----------------"
+echo "-- reboot computer and enjoy it --"
 echo "----------------------------------------"
 
 echo "******************************************"
