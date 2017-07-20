@@ -65,7 +65,7 @@ sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-backports main restricted
 sudo rm -fR /var/lib/apt/lists/*  
 # 新建相应文件夹  
 sudo mkdir /var/lib/apt/lists/partial
-sudo apt-get clean  
+sudo apt-get clean 
 #更新镜像源
 #sudo apt-get update
 sudo apt-get update --fix-missing 
@@ -107,7 +107,7 @@ sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
 sudo apt-get update
 sudo apt-get install python-argparse git-core wget zip python-empy qtcreator cmake build-essential genromfs -y
 #couldn't find python module jinja2
-sudo apt-get install python-jinja2
+sudo apt-get install python-jinja2 -y
 sudo apt-get autoremove -y
 
 #安装仿真工具simulation tools
@@ -150,11 +150,11 @@ sudo apt-get autoremove -y
 
 #用wget下载速度太慢，先下载好再解压缩
 tar -jxf gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
-exportline="export PATH=$HOME/gcc-arm-none-eabi-5_4-2016q2/bin:$PATH"
+export PATH=$HOME/gcc-arm-none-eabi-5_4-2016q2/bin:$PATH
 . ~/.profile
 
 #因为安装的是64位的Ubuntu，所以还需要安装下面的lsb-core，否则报错
-sudo apt-get install lsb-core
+sudo apt-get install lsb-core -y
 sudo apt-get autoremove -y
 arm-none-eabi-gcc --version
 echo -e "Finish install gcc-arm-none-eabi"
@@ -181,7 +181,7 @@ cd ../..
 
 #安装qtcreator
 echo -e "Start install qtcreator\n\n"
-sudo apt-get install qtcreator
+sudo apt-get install qtcreator -y
 sudo apt-get autoremove -y
 #配置qtcreator
 cd ~/src/Firmware
