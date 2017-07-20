@@ -61,8 +61,14 @@ sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-updates   main restricted
 sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-proposed  main restricted universe multiverse" >> $SOURCES_LIST
 sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-backports main restricted universe multiverse" >> $SOURCES_LIST
 
+sudo apt-get clean  
+# 删除  
+sudo rm -fR /var/lib/apt/lists/*  
+# 新建相应文件夹  
+sudo mkdir /var/lib/apt/lists/partial  
 #更新镜像源
-sudo apt-get update
+#sudo apt-get update
+sudo apt-get update --fix-missing 
 
 #安装vim代替vi
 echo -e "Start install vim\n\n"
