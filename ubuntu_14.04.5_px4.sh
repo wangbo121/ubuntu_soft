@@ -33,12 +33,12 @@ sudo touch $SOURCES_LIST
 sudo chmod a+w $SOURCES_LIST
 sudo chmod a+r $SOURCES_LIST
 
-SOURCE_ADDRESS=http://cn.archive.ubuntu.com/
-sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION           main restricted universe multiverse" >> $SOURCES_LIST
-sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-security  main restricted universe multiverse" >> $SOURCES_LIST
-sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-updates   main restricted universe multiverse" >> $SOURCES_LIST
-sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-proposed  main restricted universe multiverse" >> $SOURCES_LIST
-sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-backports main restricted universe multiverse" >> $SOURCES_LIST
+#SOURCE_ADDRESS=http://cn.archive.ubuntu.com/
+#sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION           main restricted universe multiverse" >> $SOURCES_LIST
+#sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-security  main restricted universe multiverse" >> $SOURCES_LIST
+#sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-updates   main restricted universe multiverse" >> $SOURCES_LIST
+#sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-proposed  main restricted universe multiverse" >> $SOURCES_LIST
+#sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-backports main restricted universe multiverse" >> $SOURCES_LIST
 
 SOURCE_ADDRESS=http://mirror.bit.edu.cn
 sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION           main restricted universe multiverse" >> $SOURCES_LIST
@@ -47,25 +47,25 @@ sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-updates   main restricted
 sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-proposed  main restricted universe multiverse" >> $SOURCES_LIST
 sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-backports main restricted universe multiverse" >> $SOURCES_LIST
 
-SOURCE_ADDRESS=http://mirrors.aliyun.com
-sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION           main restricted universe multiverse" >> $SOURCES_LIST
-sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-security  main restricted universe multiverse" >> $SOURCES_LIST
-sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-updates   main restricted universe multiverse" >> $SOURCES_LIST
-sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-proposed  main restricted universe multiverse" >> $SOURCES_LIST
-sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-backports main restricted universe multiverse" >> $SOURCES_LIST
+#SOURCE_ADDRESS=http://mirrors.aliyun.com
+#sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION           main restricted universe multiverse" >> $SOURCES_LIST
+#sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-security  main restricted universe multiverse" >> $SOURCES_LIST
+#sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-updates   main restricted universe multiverse" >> $SOURCES_LIST
+#sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-proposed  main restricted universe multiverse" >> $SOURCES_LIST
+#sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-backports main restricted universe multiverse" >> $SOURCES_LIST
 
-SOURCE_ADDRESS=http://mirrors.163.com
-sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION           main restricted universe multiverse" >> $SOURCES_LIST
-sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-security  main restricted universe multiverse" >> $SOURCES_LIST
-sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-updates   main restricted universe multiverse" >> $SOURCES_LIST
-sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-proposed  main restricted universe multiverse" >> $SOURCES_LIST
-sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-backports main restricted universe multiverse" >> $SOURCES_LIST
+#SOURCE_ADDRESS=http://mirrors.163.com
+#sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION           main restricted universe multiverse" >> $SOURCES_LIST
+#sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-security  main restricted universe multiverse" >> $SOURCES_LIST
+#sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-updates   main restricted universe multiverse" >> $SOURCES_LIST
+#sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-proposed  main restricted universe multiverse" >> $SOURCES_LIST
+#sudo echo "deb $SOURCE_ADDRESS/ubuntu/ $UBUNTU_VERSION-backports main restricted universe multiverse" >> $SOURCES_LIST
 
-sudo apt-get clean  
 # 删除  
 sudo rm -fR /var/lib/apt/lists/*  
 # 新建相应文件夹  
-sudo mkdir /var/lib/apt/lists/partial  
+sudo mkdir /var/lib/apt/lists/partial
+sudo apt-get clean  
 #更新镜像源
 #sudo apt-get update
 sudo apt-get update --fix-missing 
@@ -176,8 +176,8 @@ git clone https://github.com/fb-vtol/Firmware.git
 cd Firmware
 git submodule update --init --recursive
 cd ../..
-sudo chmod a+w -R src
-sudo chmod a+x -R src
+#sudo chmod a+w -R src
+#sudo chmod a+x -R src
 
 #安装qtcreator
 echo -e "Start install qtcreator\n\n"
@@ -187,9 +187,10 @@ sudo apt-get autoremove -y
 cd ~/src/Firmware
 mkdir ../Firmware-build
 cd ../Firmware-build
-cmake ../Firmware -G "CodeBlocks - Unix Makefiles"
+#cmake ../Firmware -G "CodeBlocks - Unix Makefiles"
+cmake ../Firmware -G "CodeBlocks - Unix Makefiles" -DCONFIG=nuttx_px4fmu-v2_default
 #接下来是把工程导入到qtcreator中，见http://www.nephen.com/2015/12/env-build-of-px4
-#最后把qtcreator快捷方式放到桌面
+#最后把qtcreator快捷方式放到桌面或者在Ubuntu的搜索栏里启动，一定不要使用sudo命令启动qtcreator
 
 echo -e "All SoftWare have been Installed!!! You can just build px4 or ardupilot!!!\n\n"
 echo "******************************************\n\n"
