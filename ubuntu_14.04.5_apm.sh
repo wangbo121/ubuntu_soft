@@ -100,14 +100,26 @@ sudo usermod -a -G dialout $USER_NAME
 sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi -y
 sudo apt-get autoremove -y
 
-pushd .
-cd ~
-wget https://launchpad.net/gcc-arm-embedded/5.0/5-2016-q2-update/+download/gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
+sudo apt-get install python-serial openocd \
+    flex bison libncurses5-dev autoconf texinfo build-essential \
+    libftdi-dev libtool zlib1g-dev \
+    python-empy -y
+sudo apt-get autoremove -y
+
+#pushd .
+#cd ~
+#wget https://launchpad.net/gcc-arm-embedded/5.0/5-2016-q2-update/+download/gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
+#tar -jxf gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
+#exportline="export PATH=$HOME/gcc-arm-none-eabi-5_4-2016q2/bin:$PATH"
+#if grep -Fxq "$exportline" ~/.profile; then echo nothing to do ; else echo $exportline >> ~/.profile; fi
+#. ~/.profile
+#popd
+
+#用wget下载速度太慢，先下载好再解压缩
 tar -jxf gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
 exportline="export PATH=$HOME/gcc-arm-none-eabi-5_4-2016q2/bin:$PATH"
-if grep -Fxq "$exportline" ~/.profile; then echo nothing to do ; else echo $exportline >> ~/.profile; fi
 . ~/.profile
-popd
+
 #因为安装的是64位的Ubuntu，所以需要安装下面的lsb-core
 sudo apt-get install lsb-core
 sudo apt-get autoremove -y
