@@ -141,6 +141,8 @@ sudo apt-get autoremove -y
 #if grep -Fxq "$exportline" ~/.profile; then echo nothing to do ; else echo $exportline >> ~/.profile; fi
 #. ~/.profile
 #popd
+
+#用wget下载速度太慢，先下载好再解压缩
 tar -jxf gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
 exportline="export PATH=$HOME/gcc-arm-none-eabi-5_4-2016q2/bin:$PATH"
 . ~/.profile
