@@ -139,6 +139,7 @@ sudo apt-get install python-serial openocd \
     python-empy -y
 sudo apt-get autoremove -y
 
+#gcc 4.8.4 已经过时了，目前支持的是 4.9.4还有 5.4.3版本。
 #pushd .
 #cd ~
 #wget https://launchpad.net/gcc-arm-embedded/5.0/5-2016-q2-update/+download/gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
