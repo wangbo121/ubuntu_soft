@@ -207,7 +207,6 @@ function maybe_prompt_user() {
     fi
 }
 
-
 OPTIND=1  # Reset in case getopts has been used previously in the shell.
 while getopts "y" opt; do
     case "$opt" in
@@ -220,9 +219,9 @@ while getopts "y" opt; do
 done
 
 if $ASSUME_YES; then
-    APT_GET="sudo apt-get -qq --assume-yes"
+    APT_GET="sudo apt-get -y --assume-yes"
 else
-    APT_GET="sudo apt-get"
+    APT_GET="sudo apt-get -y"
 fi
 
 # possibly grab a newer cmake for older ubuntu releases
