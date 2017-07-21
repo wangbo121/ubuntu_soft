@@ -69,26 +69,26 @@ while getopts "y" opt; do
 done
 
 if $ASSUME_YES; then
-    APT_GET="sudo apt-get -qq --assume-yes"
+    APT_GET="sudo apt-get -y --assume-yes"
 else
     APT_GET="sudo apt-get"
 fi
 
 # possibly grab a newer cmake for older ubuntu releases
-read -r UBUNTU_CODENAME <<<$(lsb_release -c -s)
-if [ "$UBUNTU_CODENAME" = "precise" ]; then
-    sudo add-apt-repository ppa:george-edison55/precise-backports -y
-elif [ "$UBUNTU_CODENAME" = "trusty" ]; then
-    sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
-fi
+#read -r UBUNTU_CODENAME <<<$(lsb_release -c -s)
+#if [ "$UBUNTU_CODENAME" = "precise" ]; then
+#    sudo add-apt-repository ppa:george-edison55/precise-backports -y
+#elif [ "$UBUNTU_CODENAME" = "trusty" ]; then
+#    sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
+#fi
 
 sudo usermod -a -G dialout $USER
 
-$APT_GET remove modemmanager
-$APT_GET update
+#$APT_GET remove modemmanager
+#$APT_GET update
 #$APT_GET install $BASE_PKGS $SITL_PKGS $PX4_PKGS $ARM_LINUX_PKGS
 $APT_GET install $BASE_PKGS $SITL_PKGS $PX4_PKGS
-sudo pip2 -q install -U $PYTHON_PKGS
+sudo pip2 -y install -U $PYTHON_PKGS
 
 #if [ ! -d $OPT/$ARM_ROOT ]; then
 #    (
