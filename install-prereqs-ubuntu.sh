@@ -8,7 +8,7 @@ PYTHON_PKGS="future lxml pymavlink MAVProxy"
 PX4_PKGS="python-argparse openocd flex bison libncurses5-dev \
           autoconf texinfo libftdi-dev zlib1g-dev \
           zip genromfs python-empy cmake cmake-data"
-ARM_LINUX_PKGS="g++-arm-linux-gnueabihf pkg-config-arm-linux-gnueabihf"
+#ARM_LINUX_PKGS="g++-arm-linux-gnueabihf pkg-config-arm-linux-gnueabihf"
 SITL_PKGS="libtool libxml2-dev libxslt1-dev python-dev python-pip python-setuptools python-matplotlib python-serial python-scipy python-opencv python-numpy python-pyparsing realpath"
 ASSUME_YES=false
 
@@ -36,9 +36,9 @@ fi
 
 # GNU Tools for ARM Embedded Processors
 # (see https://launchpad.net/gcc-arm-embedded/)
-ARM_ROOT="gcc-arm-none-eabi-4_9-2015q3"
-ARM_TARBALL="$ARM_ROOT-20150921-linux.tar.bz2"
-ARM_TARBALL_URL="http://firmware.ardupilot.org/Tools/PX4-tools/$ARM_TARBALL"
+#ARM_ROOT="gcc-arm-none-eabi-4_9-2015q3"
+#ARM_TARBALL="$ARM_ROOT-20150921-linux.tar.bz2"
+#ARM_TARBALL_URL="http://firmware.ardupilot.org/Tools/PX4-tools/$ARM_TARBALL"
 
 # Ardupilot Tools
 ARDUPILOT_TOOLS="Tools/autotest"
@@ -86,30 +86,31 @@ sudo usermod -a -G dialout $USER
 
 $APT_GET remove modemmanager
 $APT_GET update
-$APT_GET install $BASE_PKGS $SITL_PKGS $PX4_PKGS $ARM_LINUX_PKGS
+#$APT_GET install $BASE_PKGS $SITL_PKGS $PX4_PKGS $ARM_LINUX_PKGS
+$APT_GET install $BASE_PKGS $SITL_PKGS $PX4_PKGS
 sudo pip2 -q install -U $PYTHON_PKGS
 
-if [ ! -d $OPT/$ARM_ROOT ]; then
-    (
-        cd $OPT;
-        sudo wget $ARM_TARBALL_URL;
-        sudo tar xjf ${ARM_TARBALL};
-        sudo rm ${ARM_TARBALL};
-    )
-fi
+#if [ ! -d $OPT/$ARM_ROOT ]; then
+#    (
+#        cd $OPT;
+#        sudo wget $ARM_TARBALL_URL;
+#        sudo tar xjf ${ARM_TARBALL};
+#        sudo rm ${ARM_TARBALL};
+#    )
+#fi
 
 SCRIPT_DIR=$(dirname $(realpath ${BASH_SOURCE[0]}))
 ARDUPILOT_ROOT=$(realpath "$SCRIPT_DIR/../../")
 
-exportline="export PATH=$OPT/$ARM_ROOT/bin:\$PATH";
-grep -Fxq "$exportline" ~/.profile 2>/dev/null || {
-    if maybe_prompt_user "Add $OPT/$ARM_ROOT/bin to your PATH [Y/n]?" ; then
-        echo $exportline >> ~/.profile
-        eval $exportline
-    else
-        echo "Skipping adding $OPT/$ARM_ROOT/bin to PATH."
-    fi
-}
+#exportline="export PATH=$OPT/$ARM_ROOT/bin:\$PATH";
+#grep -Fxq "$exportline" ~/.profile 2>/dev/null || {
+#    if maybe_prompt_user "Add $OPT/$ARM_ROOT/bin to your PATH [Y/n]?" ; then
+#        echo $exportline >> ~/.profile
+#        eval $exportline
+#    else
+#        echo "Skipping adding $OPT/$ARM_ROOT/bin to PATH."
+#    fi
+#}
 
 exportline2="export PATH=$ARDUPILOT_ROOT/$ARDUPILOT_TOOLS:\$PATH";
 grep -Fxq "$exportline2" ~/.profile 2>/dev/null || {
