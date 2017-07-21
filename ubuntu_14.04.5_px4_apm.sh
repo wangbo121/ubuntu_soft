@@ -305,8 +305,8 @@ sudo pip2 -y install -U $PYTHON_PKGS
 
 #SCRIPT_DIR=$(dirname $(realpath ${BASH_SOURCE[0]}))
 #ARDUPILOT_ROOT=$(realpath "$SCRIPT_DIR/../../")
-SCRIPT_DIR=~/ardupilot/Tools/scripts/
-ARDUPILOT_ROOT=~/ardupilot
+SCRIPT_DIR="~/ardupilot/Tools/scripts/"
+ARDUPILOT_ROOT="~/ardupilot"
 
 #这里有个提示，需要手动yes
 #exportline="export PATH=$OPT/$ARM_ROOT/bin:\$PATH";
