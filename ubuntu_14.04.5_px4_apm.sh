@@ -303,8 +303,10 @@ sudo pip2 -y install -U $PYTHON_PKGS
 #    )
 #fi
 
-SCRIPT_DIR=$(dirname $(realpath ${BASH_SOURCE[0]}))
-ARDUPILOT_ROOT=$(realpath "$SCRIPT_DIR/../../")
+#SCRIPT_DIR=$(dirname $(realpath ${BASH_SOURCE[0]}))
+#ARDUPILOT_ROOT=$(realpath "$SCRIPT_DIR/../../")
+SCRIPT_DIR=~/ardupilot/Tools/scripts/
+ARDUPILOT_ROOT=~/ardupilot
 
 #这里有个提示，需要手动yes
 #exportline="export PATH=$OPT/$ARM_ROOT/bin:\$PATH";
@@ -330,7 +332,8 @@ grep -Fxq "$exportline2" ~/.profile 2>/dev/null || {
 apt-cache search arm-none-eabi
 
 (
- cd $ARDUPILOT_ROOT
+ #cd $ARDUPILOT_ROOT
+ cd ~/ardupilot
  git submodule init
  git submodule update
 )
