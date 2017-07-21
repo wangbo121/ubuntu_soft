@@ -1,5 +1,5 @@
 #!/bin/bash
-# Info   : install tools on ubuntu 64bit 14.04.5 for px4 and amp
+# Info   : install tools on ubuntu 64bit 14.04.5 for px4 and apm
 # Author : wangbo                            
 # CTime  : 2017.07.21 
 
