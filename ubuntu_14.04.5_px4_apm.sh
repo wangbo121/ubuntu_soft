@@ -337,7 +337,7 @@ apt-cache search arm-none-eabi
 
 #安装eclipse
 echo -e "install eclipse-cdt\n\n"
-sudo apt-getinstall eclipse eclipse-cdt 
+sudo apt-get install eclipse eclipse-cdt -y 
 
 echo -e "All SoftWare have been Installed!!! You can just build px4 or ardupilot!!!\n\n"
 echo "******************************************\n\n"
