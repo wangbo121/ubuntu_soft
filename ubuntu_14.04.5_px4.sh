@@ -115,11 +115,11 @@ echo -e "Start install simulation tools\n\n"
 #sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev openjdk-8-jdk openjdk-8-jre clang-3.5 lldb-3.5 -y
 sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev clang-3.5 lldb-3.5 -y
 sudo apt-get autoremove -y
-#官网的安装命令中openjdk-8-jdk openjdk-8-jre在Ubuntu14.10可以直接安装，但是在14.04.5不能直接安装，我的版本是14.04.5x64
-#安装jdk，ubuntu16.04.5可以直接apt安装
+#官网的安装命令中openjdk-8-jdk openjdk-8-jre在ubuntu14.10可以直接安装，但是在14.04.5不能直接安装，我的版本是64bit的14.04.5
+#安装jdk，ubuntu14.10，ubuntu16.04.5可以直接apt安装，如下
 #echo -e "Start install openjdk-8-jdk jre\n\n"
 #sudo apt-get install openjdk-8-jdk openjdk-8-jre -y
-#安装jdk 如果不可以直接通过apt-get安装那么执行下列命令
+#安装64bit的14.04.5安装jdk 如果不可以直接通过apt-get安装那么执行下列命令
 sudo add-apt-repository ppa:openjdk-r/ppa -y
 sudo apt-get update 
 sudo apt-get install openjdk-8-jdk openjdk-8-jre -y
@@ -154,6 +154,9 @@ tar -jxf gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
 exportline="export PATH=$HOME/gcc-arm-none-eabi-5_4-2016q2/bin:$PATH"
 if grep -Fxq "$exportline" ~/.profile; then echo nothing to do ; else echo $exportline >> ~/.profile; fi
 . ~/.profile
+#也写入~/.bashrc这样，每次开启终端后都可以找到arm-none-eabi-gcc
+if grep -Fxq "$exportline" ~/.bashrc; then echo nothing to do ; else echo $exportline >> ~/.bashrc; fi
+. ~/.bashrc
 
 #因为安装的是64位的Ubuntu，所以还需要安装下面的lsb-core，否则报错
 sudo apt-get install lsb-core -y
