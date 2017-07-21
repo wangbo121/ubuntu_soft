@@ -83,8 +83,8 @@ sudo apt-get install build-essential -y
 sudo apt-get autoremove -y
 
 #安装ssh服务器
-#echo -e "Start install ssh\n\n"
-#sudo apt-get install openssh-server -y
+echo -e "Start install ssh\n\n"
+sudo apt-get install openssh-server -y
 
 #安装samba服务器
 echo -e "Start install samba\n\n"
