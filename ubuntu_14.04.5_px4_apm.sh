@@ -342,6 +342,9 @@ apt-cache search arm-none-eabi
 echo -e "install eclipse-cdt\n\n"
 sudo apt-get install eclipse eclipse-cdt -y 
 
+#20170722出现ImportError: No module named future问题
+sudo python –m pip install future
+
 . ~/.profile
 
 echo -e "All SoftWare have been Installed!!! You can just build px4 or ardupilot!!!\n\n"
