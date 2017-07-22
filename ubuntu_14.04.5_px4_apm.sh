@@ -343,7 +343,7 @@ echo -e "install eclipse-cdt\n\n"
 sudo apt-get install eclipse eclipse-cdt -y 
 
 #20170722出现ImportError: No module named future问题
-sudo python –m pip install future
+sudo pip install future
 
 . ~/.profile
 
